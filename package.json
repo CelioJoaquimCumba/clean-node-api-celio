@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/CelioJoaquimCumba/clean-node-api-celio/issues"
   },
-  "homepage": "https://github.com/CelioJoaquimCumba/clean-node-api-celio#readme"
+  "homepage": "https://github.com/CelioJoaquimCumba/clean-node-api-celio#readme",
+  "dependencies": {
+    "git-commit-msg-linter": "^4.1.3"
+  }
 }
