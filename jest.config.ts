@@ -7,11 +7,11 @@ module.exports = {
   // The directory where Jest should output its coverage files
   roots: ['<rootDir>/src'],
 
-  coverageDirectory: 'coverage',
-
   collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
 
-  testEnvironment: 'jest-environment-node',
+  coverageDirectory: 'coverage',
+
+  testEnvironment: 'node',
 
   transform: {
     '.+\\.ts$': 'ts-jest'
