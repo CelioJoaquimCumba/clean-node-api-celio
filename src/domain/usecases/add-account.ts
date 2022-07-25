@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { AccountModel } from '../models/account'
 
 export interface AddAccountModel {

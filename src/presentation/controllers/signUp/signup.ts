@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { HttpResponse, HttpRequest, Controller, EmailValidator, AddAccount } from './signUpProtocols'
 import { MissingParamError, InvalidParamError } from '../../errors'
 import { badRequest, serverError, ok } from '../../helpers/http-helper'
@@ -34,12 +35,8 @@ export class SignUpController implements Controller {
       })
       return ok(account)
     } catch (error) {
+      console.log(error)
       return serverError()
-    }
-
-    return {
-      statusCode: 200,
-      body: undefined
     }
   }
 }
