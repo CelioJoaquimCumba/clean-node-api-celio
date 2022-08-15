@@ -4,18 +4,24 @@ import { AddAccountModel } from '../../../../domain/usecases/add-account'
 
 export const MongoHelper = {
   client: null as unknown as MongoClient,
+  uri: null as unknown as string,
   async connect (uri: string): Promise<void> {
-    console.log(uri)
-    console.log('-------------------------------------------------------------------------------------------------------------------------------------------')
+    this.uri = uri
     this.client = await MongoClient.connect(uri)
   },
   async disconnect (): Promise<void> {
-    await this.client.close()
+    if (!this.client) {
+      await this.client.close()
+      this.client = null
+    }
   },
-  getCollection (name: string): Collection {
+  async getCollection (name: string): Promise<Collection> {
+    await this.connect(this.uri)
+
     return this.client.db().collection(name)
   },
-  map: (_id: string, collection: any): any => {
-    return Object.assign({}, collection, { id: _id })
+  map: (id: string, collection: any): any => {
+    const { _id, ...collectionWithoutId } = collection
+    return Object.assign({}, collectionWithoutId, { id: id })
   }
 }

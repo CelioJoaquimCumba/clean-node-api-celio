@@ -7,7 +7,7 @@ module.exports = {
   // The directory where Jest should output its coverage files
   roots: ['<rootDir>/src'],
 
-  collectCoverageFrom: ['<rootDir>/src/**/*.ts'],
+  collectCoverageFrom: ['<rootDir>/src/**/*.ts', '!<rootDir>/src/main/**'],
 
   coverageDirectory: 'coverage',
 
