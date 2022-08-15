@@ -13,6 +13,6 @@ export class LogControllerDecorator implements Controller {
     // }
     // return httpResponse
     const httpResponse = await this.controller.handle(httpRequest)
-    return new Promise(resolve => resolve({ statusCode: 0, body: null }))
+    return httpResponse
   }
 }
