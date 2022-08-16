@@ -1,7 +1,9 @@
+import { Authentication } from '../../../domain/usecases/authentication'
 import { InvalidParamError, MissingParamError } from '../../errors'
 import { badRequest, serverError } from '../../helpers/http-helper'
 import { HttpRequest } from '../../protocols'
 import { EmailValidator } from '../../protocols/email-validator'
+import { AccountModel } from '../signUp/signUpProtocols'
 import { LoginController } from './login'
 
 const makeEmailValidatorStub = (): EmailValidator => {
@@ -12,16 +14,27 @@ const makeEmailValidatorStub = (): EmailValidator => {
   }
   return new EmailValidatorStub()
 }
+const makeAuthenticationStub = (): Authentication => {
+  class AuthenticationStub implements Authentication {
+    async auth (email: string, password: string): Promise<string> {
+      return new Promise(resolve => resolve('any_token'))
+    }
+  }
+  return new AuthenticationStub()
+}
 interface SutType {
   sut: LoginController
   emailValidatorStub: EmailValidator
+  authenticationStub: Authentication
 }
 const makeSut = (): SutType => {
   const emailValidatorStub = makeEmailValidatorStub()
-  const sut = new LoginController(emailValidatorStub)
+  const authenticationStub = makeAuthenticationStub()
+  const sut = new LoginController(emailValidatorStub, authenticationStub)
   return {
     sut,
-    emailValidatorStub
+    emailValidatorStub,
+    authenticationStub
   }
 }
 const makeFakeHttpRequest = (): HttpRequest => ({
@@ -74,5 +87,13 @@ describe('Login Controller', () => {
     const httpRequest: HttpRequest = makeFakeHttpRequest()
     const httpResponse = await sut.handle(httpRequest)
     expect(httpResponse).toEqual(serverError(new Error()))
+  })
+  test('Should call EmailValidator with correct email', async () => {
+    const { sut, authenticationStub } = makeSut()
+    const authSpy = jest.spyOn(authenticationStub, 'auth')
+    const httpRequest: HttpRequest = makeFakeHttpRequest()
+    const { email, password } = httpRequest.body
+    await sut.handle(httpRequest)
+    expect(authSpy).toHaveBeenCalledWith(email, password)
   })
 })
