@@ -27,11 +27,7 @@ export class LoginController implements Controller {
       if (acess_token.trim() === '') {
         return unauthorized()
       }
-      return ok({
-        id: 'valid_id',
-        name: 'valid_name',
-        password: 'valid_password'
-      })
+      return ok({ acessToken: 'any_token' })
     } catch (error) {
       return serverError(error)
     }
