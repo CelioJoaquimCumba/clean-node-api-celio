@@ -4,7 +4,7 @@ import { DbAddAccount } from '../../data/usecases/add-acount/db-add-account'
 import { BcryptAdapter } from '../../infra/cryptography/bcrypt-adapter'
 import { AccountMongoRepository } from '../../infra/db/mongodb/account-repository/account'
 import { Controller } from '../../presentation/protocols'
-import { LogControllerDecorator } from './deorators/log'
+import { LogControllerDecorator } from './decorators/log'
 import { LogMongoRepository } from '../../infra/db/mongodb/log-repository/log'
 
 export const makeSignUpController = (): Controller => {
