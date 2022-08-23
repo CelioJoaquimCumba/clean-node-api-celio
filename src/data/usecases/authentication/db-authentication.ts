@@ -1,5 +1,5 @@
 import { Authentication, AuthenticationModel } from '../../../domain/usecases/authentication'
-import { LoadAccountByEmailRepository } from '../../protocols/load-account-by-email-repository'
+import { LoadAccountByEmailRepository } from '../../protocols/db/load-account-by-email-repository'
 
 export class DbAuthentication implements Authentication {
     private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
@@ -7,9 +7,9 @@ export class DbAuthentication implements Authentication {
       this.loadAccountByEmailRepository = loadAccountByEmailRepositoryStub
     }
 
-    async auth (authentication: AuthenticationModel): Promise<string> {
+    async auth (authentication: AuthenticationModel): Promise<string|null> {
       const { email, password } = authentication
       await this.loadAccountByEmailRepository.load(email)
-      return ''
+      return null
     }
 }
