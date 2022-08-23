@@ -21,7 +21,7 @@ export class LoginController implements Controller {
       }
       const { email, password } = httpRequest.body
       const acess_token = await this.authentication.auth({ email, password })
-      if (acess_token.trim() === '') {
+      if (!acess_token) {
         return unauthorized()
       }
       return ok({ acessToken: 'any_token' })
