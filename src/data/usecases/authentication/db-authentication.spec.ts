@@ -31,17 +31,17 @@ const makeFakeAccount = (): AccountModel => ({
   email: 'any_email@example.com',
   password: 'any_password'
 })
-const makeFakeRequest = (): AuthenticationModel => ({
+const makeFakeAuthenticationModel = (): AuthenticationModel => ({
   email: 'any_email@example.com',
   password: 'any_password'
 })
 
 describe('DbAuthentication UseCase', () => {
-  test('Should call LoadAccountByEmailRepository with correct email', () => {
+  test('Should call LoadAccountByEmailRepository with correct email', async () => {
     const { sut, loadAccountByEmailRepositoryStub } = makeSut()
     const loadSpy = jest.spyOn(loadAccountByEmailRepositoryStub, 'load')
-    const httpRequest = makeFakeRequest()
-    sut.auth(httpRequest)
+    const httpRequest = makeFakeAuthenticationModel()
+    await sut.auth(httpRequest)
     expect(loadSpy).toHaveBeenCalledWith(httpRequest.email)
   })
 })
