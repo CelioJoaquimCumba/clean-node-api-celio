@@ -1,6 +1,6 @@
 import { Authentication, Controller, HttpRequest, HttpResponse, EmailValidator } from './login-protocols'
 import { InvalidParamError, MissingParamError, UnauthorizedError } from '../../errors'
-import { badRequest, ok, serverError, unauthorized } from '../../helpers/http-helper'
+import { badRequest, ok, serverError, unauthorized } from '../../helpers/http/http-helper'
 import { Validation } from '../../helpers'
 
 export class LoginController implements Controller {
