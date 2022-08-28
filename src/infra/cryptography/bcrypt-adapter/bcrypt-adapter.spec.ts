@@ -46,7 +46,7 @@ describe('Bcrypt Adapter', () => {
   test('Should return false when compare fails', async () => {
     // TODO: ask Jeronimo why here when you replace sut -> bcrypt it gives an error
     const sut = makeSut()
-    jest.spyOn(sut, 'compare').mockReturnValueOnce(new Promise<boolean>(resolve => resolve(false)))
+    jest.spyOn(bcrypt, 'compare').mockImplementationOnce(() => false)
     const isValid = await sut.compare('any_value', 'any_hash')
     expect(isValid).toBe(false)
   })
