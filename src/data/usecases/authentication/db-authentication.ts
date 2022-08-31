@@ -27,7 +27,7 @@ export class DbAuthentication implements Authentication {
       if (!match) return null
       const token = await this.encrypter.encrypt(account.id)
       if (!token) return null
-      await this.updateAccessTokenRepository.update(account.id, token)
+      await this.updateAccessTokenRepository.updateAcessToken(account.id, token)
       return token
     }
 }
