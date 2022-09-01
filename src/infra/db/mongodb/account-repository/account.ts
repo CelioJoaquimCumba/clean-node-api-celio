@@ -1,6 +1,6 @@
 import { resolveObjectURL } from 'buffer'
 import { ObjectId } from 'mongodb'
-import { AddAccountRepository } from '../../../../data/protocols/db/addAccountRepository'
+import { AddAccountRepository } from '../../../../data/protocols/db/add-account-repository'
 import { LoadAccountByEmailRepository } from '../../../../data/protocols/db/load-account-by-email-repository'
 import { UpdateAccessTokenRepository } from '../../../../data/protocols/db/update-acessToken-repository'
 import { AccountModel } from '../../../../domain/models/account'
