@@ -5,7 +5,6 @@ import { Validation } from '../../helpers'
 
 export class LoginController implements Controller {
   constructor (
-    private readonly emailValidator: EmailValidator,
     private readonly authentication: Authentication,
     private readonly validation: Validation) {}
 

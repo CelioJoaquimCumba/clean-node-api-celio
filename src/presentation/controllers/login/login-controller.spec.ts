@@ -30,18 +30,15 @@ const makeValidation = (): Validation => {
 }
 interface SutType {
   sut: LoginController
-  emailValidatorStub: EmailValidator
   authenticationStub: Authentication
   validationStub: Validation
 }
 const makeSut = (): SutType => {
-  const emailValidatorStub = makeEmailValidator()
   const authenticationStub = makeAuthentication()
   const validationStub = makeValidation()
-  const sut = new LoginController(emailValidatorStub, authenticationStub, validationStub)
+  const sut = new LoginController(authenticationStub, validationStub)
   return {
     sut,
-    emailValidatorStub,
     authenticationStub,
     validationStub
   }
