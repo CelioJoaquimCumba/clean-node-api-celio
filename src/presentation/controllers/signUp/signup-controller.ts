@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { HttpResponse, HttpRequest, Controller, AddAccount } from './signUp-protocols'
+import { HttpResponse, HttpRequest, Controller, AddAccount } from './signUp-controller-protocols'
 import { MissingParamError, InvalidParamError } from '../../errors'
 import { badRequest, serverError, ok, Validation } from '../../helpers'
 
